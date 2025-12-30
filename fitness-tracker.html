@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lisa's Muscle Building Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2C1810;
+            --accent: #C17C4B;
+            --accent-light: #D4A574;
+            --background: #FAF7F5;
+            --surface: #FFFFFF;
+            --text: #1A1A1A;
+            --text-light: #666666;
+            --success: #5B8C5A;
+            --border: #E5DDD5;
+            --shadow: rgba(44, 24, 16, 0.08);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #FAF7F5 0%, #F0EBE3 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 60px;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .goal-banner {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 16px;
+            margin: 30px 0;
+            box-shadow: 0 8px 24px var(--shadow);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .goal-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .goal-item {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .goal-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+        }
+
+        .goal-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .tab-btn:hover {
+            color: var(--accent);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .card-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reminder-box {
+            background: linear-gradient(135deg, #FFF9F0 0%, #FFE6CC 100%);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .reminder-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .workout-section {
+            margin-bottom: 35px;
+        }
+
+        .workout-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-light);
+        }
+
+        .exercise-card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .exercise-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .exercise-reps {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .video-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border: 2px solid var(--accent);
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .video-link:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .sets-input {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .set-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .set-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        input[type="number"], input[type="date"] {
+            padding: 10px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            width: 80px;
+            transition: all 0.3s;
+        }
+
+        input[type="number"]:focus, input[type="date"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .measurement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .measurement-input {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .measurement-input label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .measurement-input input {
+            width: 100%;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(193, 124, 75, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .progress-chart {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--background);
+            border-radius: 12px;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .progress-item:last-child {
+            border-bottom: none;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .progress-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .meal-plan {
+            display: grid;
+            gap: 20px;
+        }
+
+        .meal-card {
+            background: var(--background);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .meal-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .meal-macros {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .meal-items {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .meal-items li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .meal-items li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .history-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            background: var(--background);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent-light);
+        }
+
+        .history-date {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .history-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .goal-content {
+                flex-direction: column;
+            }
+
+            .measurement-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sets-input {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                flex: 1;
+                text-align: center;
+            }
+        }
+
+        .success-message {
+            background: var(--success);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Your Transformation Journey</h1>
+            <div class="subtitle">3-Month Muscle Building Program</div>
+        </header>
+
+        <div class="goal-banner">
+            <div class="goal-content">
+                <div class="goal-item">
+                    <div class="goal-label">Starting Weight</div>
+                    <div class="goal-value">145 lbs</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-label">Goal Weight</div>
+                    <div class="goal-value">135 lbs</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-label">Target</div>
+                    <div class="goal-value">Build Muscle</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-label">Timeline</div>
+                    <div class="goal-value">3 Months</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('today')">Today's Focus</button>
+            <button class="tab-btn" onclick="showTab('workouts')">Workouts</button>
+            <button class="tab-btn" onclick="showTab('nutrition')">Nutrition</button>
+            <button class="tab-btn" onclick="showTab('tracking')">Log Progress</button>
+            <button class="tab-btn" onclick="showTab('history')">My History</button>
+        </div>
+
+        <!-- Today's Focus Tab -->
+        <div id="today" class="tab-content active">
+            <div class="reminder-box" id="todayReminder">
+                <div class="reminder-title">📅 Today's Reminder</div>
+                <div id="reminderText">Loading your schedule...</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Quick Actions</div>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <button class="btn" onclick="showTab('workouts')">View Today's Workout</button>
+                    <button class="btn btn-secondary" onclick="showTab('tracking')">Log Progress</button>
+                    <button class="btn btn-secondary" onclick="showTab('nutrition')">Meal Plan</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Your Progress</div>
+                <div class="progress-chart" id="quickProgress">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📊</div>
+                        <p>Start logging your progress to see your journey!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workouts Tab -->
+        <div id="workouts" class="tab-content">
+            <div class="card">
+                <div class="card-header">💪 Workout Program</div>
+                
+                <div class="workout-section">
+                    <div class="workout-title">Lower Body + Core (Days 1 & 3)</div>
+                    
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Goblet Squats</div>
+                            <div class="exercise-reps">4 sets × 8-10 reps</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=goblet+squat+form+tutorial" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Romanian Deadlifts</div>
+                            <div class="exercise-reps">4 sets × 8-10 reps</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=romanian+deadlift+dumbbell+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Walking Lunges</div>
+                            <div class="exercise-reps">3 sets × 12 reps per leg</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=walking+lunges+proper+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Hip Thrusts</div>
+                            <div class="exercise-reps">3 sets × 12 reps</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=hip+thrust+tutorial" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Plank Variations</div>
+                            <div class="exercise-reps">3 sets × 30-45 seconds</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=plank+variations+workout" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+                </div>
+
+                <div class="workout-section">
+                    <div class="workout-title">Upper Body + Core (Days 2 & 4)</div>
+                    
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Push-ups</div>
+                            <div class="exercise-reps">4 sets × 8-12 reps</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=push+up+progression+tutorial" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Dumbbell Rows</div>
+                            <div class="exercise-reps">4 sets × 10 reps per arm</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Overhead Press</div>
+                            <div class="exercise-reps">3 sets × 10 reps</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=dumbbell+overhead+press+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Chest Press</div>
+                            <div class="exercise-reps">3 sets × 10 reps</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=dumbbell+chest+press+tutorial" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Bicep Curls</div>
+                            <div class="exercise-reps">3 sets × 12 reps</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=bicep+curl+proper+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Tricep Dips</div>
+                            <div class="exercise-reps">3 sets × 12 reps</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=tricep+dips+bench+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <div class="exercise-name">Dead Bug / Bird Dog</div>
+                            <div class="exercise-reps">3 sets × 10 reps per side</div>
+                        </div>
+                        <a href="https://www.youtube.com/results?search_query=dead+bug+bird+dog+exercise" target="_blank" class="video-link">📹 Watch Form Video</a>
+                    </div>
+                </div>
+
+                <div class="reminder-box">
+                    <div class="reminder-title">💡 Pro Tips</div>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Increase weight by 2.5-5 lbs when you complete all sets with good form</li>
+                        <li>Rest 60-90 seconds between sets</li>
+                        <li>Focus on slow, controlled movements</li>
+                        <li>Track your weights - progressive overload is key!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nutrition Tab -->
+        <div id="nutrition" class="tab-content">
+            <div class="card">
+                <div class="card-header">🥗 Daily Meal Plan</div>
+                <div style="margin-bottom: 20px; padding: 15px; background: var(--background); border-radius: 8px;">
+                    <strong>Daily Targets:</strong> 1,800-1,900 calories | 130-145g protein | 60-75g fat | 150-180g carbs
+                </div>
+
+                <div class="meal-plan">
+                    <div class="meal-card">
+                        <div class="meal-title">Breakfast</div>
+                        <div class="meal-macros">400 cal • 35g protein</div>
+                        <ul class="meal-items">
+                            <li>3 egg whites + 1 whole egg scrambled with spinach</li>
+                            <li>1/2 cup oatmeal with berries</li>
+                            <li>Black coffee or tea</li>
+                        </ul>
+                    </div>
+
+                    <div class="meal-card">
+                        <div class="meal-title">Mid-Morning Snack</div>
+                        <div class="meal-macros">200 cal • 20g protein</div>
+                        <ul class="meal-items">
+                            <li>Greek yogurt (5.3oz, 0-2% fat) + 1 tbsp almond butter</li>
+                            <li>OR protein shake with banana</li>
+                        </ul>
+                    </div>
+
+                    <div class="meal-card">
+                        <div class="meal-title">Lunch</div>
+                        <div class="meal-macros">500 cal • 40g protein</div>
+                        <ul class="meal-items">
+                            <li>5-6 oz grilled chicken, salmon, or lean turkey</li>
+                            <li>Large mixed greens salad with olive oil vinaigrette</li>
+                            <li>1/2 cup quinoa or sweet potato</li>
+                            <li>Assorted vegetables</li>
+                        </ul>
+                    </div>
+
+                    <div class="meal-card">
+                        <div class="meal-title">Afternoon Snack</div>
+                        <div class="meal-macros">150 cal • 15g protein</div>
+                        <ul class="meal-items">
+                            <li>String cheese + apple</li>
+                            <li>OR 1/4 cup hummus with veggie sticks</li>
+                        </ul>
+                    </div>
+
+                    <div class="meal-card">
+                        <div class="meal-title">Dinner</div>
+                        <div class="meal-macros">500 cal • 35g protein</div>
+                        <ul class="meal-items">
+                            <li>5-6 oz protein (steak, fish, pork tenderloin, tofu)</li>
+                            <li>Roasted vegetables (Brussels sprouts, asparagus, cauliflower)</li>
+                            <li>Side salad with vinaigrette</li>
+                            <li>1/3 cup brown rice (training days only)</li>
+                        </ul>
+                    </div>
+
+                    <div class="meal-card">
+                        <div class="meal-title">Evening (Optional)</div>
+                        <div class="meal-macros">150 cal • 10g protein</div>
+                        <ul class="meal-items">
+                            <li>Cottage cheese with cucumber</li>
+                            <li>OR casein protein shake</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reminder-box" style="margin-top: 30px;">
+                    <div class="reminder-title">🌟 Perimenopause Nutrition Tips</div>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Front-load carbs earlier in the day</li>
+                        <li>Keep healthy fats at 25-30% of calories</li>
+                        <li>Stay hydrated: 80-100 oz water daily</li>
+                        <li>Consider creatine: 5g daily (great for women 40+)</li>
+                        <li>Limit wine to 1-2 glasses/week during this 3-month push</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tracking Tab -->
+        <div id="tracking" class="tab-content">
+            <div class="card">
+                <div class="card-header">📊 Log Your Progress</div>
+                
+                <h3 style="margin-bottom: 15px; color: var(--primary);">Body Measurements</h3>
+                <div class="measurement-grid">
+                    <div class="measurement-input">
+                        <label>Date</label>
+                        <input type="date" id="measurementDate">
+                    </div>
+                    <div class="measurement-input">
+                        <label>Body Weight (lbs)</label>
+                        <input type="number" id="weight" step="0.1" placeholder="145.0">
+                    </div>
+                    <div class="measurement-input">
+                        <label>Waist (inches)</label>
+                        <input type="number" id="waist" step="0.25" placeholder="28.0">
+                    </div>
+                    <div class="measurement-input">
+                        <label>Hips (inches)</label>
+                        <input type="number" id="hips" step="0.25" placeholder="38.0">
+                    </div>
+                    <div class="measurement-input">
+                        <label>Right Thigh (inches)</label>
+                        <input type="number" id="thigh" step="0.25" placeholder="22.0">
+                    </div>
+                    <div class="measurement-input">
+                        <label>Right Arm (inches)</label>
+                        <input type="number" id="arm" step="0.25" placeholder="11.0">
+                    </div>
+                </div>
+
+                <h3 style="margin: 30px 0 15px; color: var(--primary);">Daily Nutrition</h3>
+                <div class="measurement-grid">
+                    <div class="measurement-input">
+                        <label>Calories</label>
+                        <input type="number" id="calories" placeholder="1850">
+                    </div>
+                    <div class="measurement-input">
+                        <label>Protein (g)</label>
+                        <input type="number" id="protein" placeholder="140">
+                    </div>
+                    <div class="measurement-input">
+                        <label>Carbs (g)</label>
+                        <input type="number" id="carbs" placeholder="165">
+                    </div>
+                    <div class="measurement-input">
+                        <label>Fat (g)</label>
+                        <input type="number" id="fat" placeholder="68">
+                    </div>
+                    <div class="measurement-input">
+                        <label>Water (oz)</label>
+                        <input type="number" id="water" placeholder="90">
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button class="btn" onclick="saveProgress()">Save Progress</button>
+                </div>
+
+                <div id="successMessage" style="display: none;" class="success-message">
+                    ✓ Progress saved successfully!
+                </div>
+            </div>
+        </div>
+
+        <!-- History Tab -->
+        <div id="history" class="tab-content">
+            <div class="card">
+                <div class="card-header">📈 Your Progress History</div>
+                <div id="historyList" class="history-list">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📋</div>
+                        <p>No progress logged yet. Start tracking to see your journey!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            setTodayDate();
+            updateTodayReminder();
+            loadHistory();
+            updateQuickProgress();
+        }
+
+        function setTodayDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('measurementDate').value = today;
+        }
+
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activate button
+            event.target.classList.add('active');
+        }
+
+        function updateTodayReminder() {
+            const today = new Date();
+            const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            let reminder = '';
+
+            // Workout schedule: Mon/Tue (1,2), Thu/Fri (4,5)
+            if (dayOfWeek === 1 || dayOfWeek === 4) {
+                reminder = '💪 <strong>Lower Body + Core Day!</strong> Time to build those legs and glutes. Don\'t forget to track your weights.';
+            } else if (dayOfWeek === 2 || dayOfWeek === 5) {
+                reminder = '💪 <strong>Upper Body + Core Day!</strong> Focus on building upper body strength today.';
+            } else if (dayOfWeek === 0) {
+                reminder = '📏 <strong>Weigh-in Day!</strong> Time to log your weekly measurements. Weigh yourself first thing in the morning.';
+            } else {
+                reminder = '🌟 <strong>Rest & Recovery Day.</strong> Your muscles grow during rest. Stay hydrated and hit your protein target!';
+            }
+
+            document.getElementById('reminderText').innerHTML = reminder;
+        }
+
+        async function saveProgress() {
+            const data = {
+                date: document.getElementById('measurementDate').value,
+                weight: document.getElementById('weight').value,
+                waist: document.getElementById('waist').value,
+                hips: document.getElementById('hips').value,
+                thigh: document.getElementById('thigh').value,
+                arm: document.getElementById('arm').value,
+                calories: document.getElementById('calories').value,
+                protein: document.getElementById('protein').value,
+                carbs: document.getElementById('carbs').value,
+                fat: document.getElementById('fat').value,
+                water: document.getElementById('water').value
+            };
+
+            // Filter out empty values
+            const cleanData = {};
+            for (const [key, value] of Object.entries(data)) {
+                if (value && value !== '') {
+                    cleanData[key] = value;
+                }
+            }
+
+            if (Object.keys(cleanData).length <= 1) { // Only date
+                alert('Please enter at least one measurement or nutrition value.');
+                return;
+            }
+
+            try {
+                const storageKey = `progress_${cleanData.date}`;
+                await window.storage.set(storageKey, JSON.stringify(cleanData));
+                
+                // Show success message
+                const successMsg = document.getElementById('successMessage');
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 3000);
+
+                // Clear form
+                document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
+                setTodayDate();
+
+                // Refresh history
+                loadHistory();
+                updateQuickProgress();
+            } catch (error) {
+                alert('Error saving progress. Please try again.');
+                console.error('Save error:', error);
+            }
+        }
+
+        async function loadHistory() {
+            try {
+                const keys = await window.storage.list('progress_');
+                
+                if (!keys || keys.keys.length === 0) {
+                    document.getElementById('historyList').innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📋</div>
+                            <p>No progress logged yet. Start tracking to see your journey!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Sort keys by date (newest first)
+                const sortedKeys = keys.keys.sort().reverse();
+                
+                let historyHTML = '';
+                for (const key of sortedKeys) {
+                    try {
+                        const result = await window.storage.get(key);
+                        if (result && result.value) {
+                            const data = JSON.parse(result.value);
+                            historyHTML += createHistoryItem(data);
+                        }
+                    } catch (e) {
+                        console.error('Error loading entry:', e);
+                    }
+                }
+
+                document.getElementById('historyList').innerHTML = historyHTML || `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📋</div>
+                        <p>No valid progress entries found.</p>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error loading history:', error);
+                document.getElementById('historyList').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <p>Unable to load history. Please refresh the page.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function createHistoryItem(data) {
+            const date = new Date(data.date).toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+
+            let detailsHTML = '<div class="history-details">';
+            
+            if (data.weight) detailsHTML += `<div><strong>Weight:</strong> ${data.weight} lbs</div>`;
+            if (data.waist) detailsHTML += `<div><strong>Waist:</strong> ${data.waist}"</div>`;
+            if (data.hips) detailsHTML += `<div><strong>Hips:</strong> ${data.hips}"</div>`;
+            if (data.thigh) detailsHTML += `<div><strong>Thigh:</strong> ${data.thigh}"</div>`;
+            if (data.arm) detailsHTML += `<div><strong>Arm:</strong> ${data.arm}"</div>`;
+            if (data.calories) detailsHTML += `<div><strong>Calories:</strong> ${data.calories}</div>`;
+            if (data.protein) detailsHTML += `<div><strong>Protein:</strong> ${data.protein}g</div>`;
+            if (data.carbs) detailsHTML += `<div><strong>Carbs:</strong> ${data.carbs}g</div>`;
+            if (data.fat) detailsHTML += `<div><strong>Fat:</strong> ${data.fat}g</div>`;
+            if (data.water) detailsHTML += `<div><strong>Water:</strong> ${data.water}oz</div>`;
+            
+            detailsHTML += '</div>';
+
+            return `
+                <div class="history-item">
+                    <div class="history-date">${date}</div>
+                    ${detailsHTML}
+                </div>
+            `;
+        }
+
+        async function updateQuickProgress() {
+            try {
+                const keys = await window.storage.list('progress_');
+                
+                if (!keys || keys.keys.length === 0) {
+                    return;
+                }
+
+                // Get most recent entry
+                const sortedKeys = keys.keys.sort().reverse();
+                const latestKey = sortedKeys[0];
+                const result = await window.storage.get(latestKey);
+                
+                if (result && result.value) {
+                    const data = JSON.parse(result.value);
+                    
+                    let progressHTML = '';
+                    if (data.weight) {
+                        const remaining = 145 - parseFloat(data.weight);
+                        const lost = 145 - parseFloat(data.weight);
+                        progressHTML += `
+                            <div class="progress-item">
+                                <span class="progress-label">Current Weight</span>
+                                <span class="progress-value">${data.weight} lbs</span>
+                            </div>
+                            <div class="progress-item">
+                                <span class="progress-label">Weight Lost</span>
+                                <span class="progress-value">${lost.toFixed(1)} lbs</span>
+                            </div>
+                            <div class="progress-item">
+                                <span class="progress-label">To Goal</span>
+                                <span class="progress-value">${(145 - 135).toFixed(1)} lbs</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (data.protein) {
+                        progressHTML += `
+                            <div class="progress-item">
+                                <span class="progress-label">Last Protein Intake</span>
+                                <span class="progress-value">${data.protein}g</span>
+                            </div>
+                        `;
+                    }
+
+                    if (progressHTML) {
+                        document.getElementById('quickProgress').innerHTML = progressHTML;
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating quick progress:', error);
+            }
+        }
+    </script>
+</body>
+</html>
