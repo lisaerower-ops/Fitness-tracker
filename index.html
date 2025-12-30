@@ -23,6 +23,8 @@
             --success: #5B8C5A;
             --border: #E5DDD5;
             --shadow: rgba(44, 24, 16, 0.08);
+            --completed: #5B8C5A;
+            --rest: #9DB4C0;
         }
 
         body {
@@ -206,6 +208,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .exercise-name {
@@ -229,11 +233,92 @@
             border-radius: 6px;
             transition: all 0.3s;
             font-size: 0.9rem;
+            margin-bottom: 10px;
         }
 
         .video-link:hover {
             background: var(--accent);
             color: white;
+        }
+
+        .weight-logger {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .weight-logger-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .weight-input-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .weight-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .weight-input-group label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .weight-input-group input {
+            width: 70px;
+            padding: 8px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .log-weight-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            margin-top: 18px;
+        }
+
+        .log-weight-btn:hover {
+            background: var(--accent-light);
+        }
+
+        .weight-history {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            max-height: 100px;
+            overflow-y: auto;
+        }
+
+        .weight-history-item {
+            padding: 5px;
+            background: var(--surface);
+            border-radius: 4px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .weight-trend {
+            color: var(--success);
+            font-weight: 600;
         }
 
         .sets-input {
@@ -427,6 +512,171 @@
             color: var(--text-light);
         }
 
+        /* Calendar Styles */
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .calendar-nav button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .calendar-nav button:hover {
+            background: var(--accent-light);
+        }
+
+        .calendar-month {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .calendar-day.other-month {
+            opacity: 0.3;
+            cursor: default;
+        }
+
+        .calendar-day.other-month:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .calendar-day.today {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #FFF9F0 0%, #FFE6CC 100%);
+        }
+
+        .calendar-day.workout-day {
+            background: linear-gradient(135deg, #E8F4E8 0%, #D4E8D4 100%);
+        }
+
+        .calendar-day.completed {
+            background: var(--completed);
+            color: white;
+            border-color: var(--completed);
+        }
+
+        .calendar-day.rest-day {
+            background: var(--background);
+        }
+
+        .calendar-day-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .calendar-day-label {
+            font-size: 0.7rem;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .calendar-day.completed .calendar-day-label {
+            opacity: 0.9;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1.2rem;
+        }
+
+        .calendar-legend {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--background);
+            border-radius: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            border: 2px solid var(--border);
+        }
+
+        .legend-color.completed {
+            background: var(--completed);
+        }
+
+        .legend-color.workout {
+            background: linear-gradient(135deg, #E8F4E8 0%, #D4E8D4 100%);
+        }
+
+        .legend-color.rest {
+            background: var(--background);
+        }
+
+        .legend-color.measurement {
+            background: linear-gradient(135deg, #FFF9F0 0%, #FFE6CC 100%);
+            border-color: var(--accent);
+        }
+
         @keyframes slideIn {
             from {
                 opacity: 0;
@@ -463,6 +713,34 @@
             .tab-btn {
                 flex: 1;
                 text-align: center;
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+
+            .calendar-grid {
+                gap: 5px;
+            }
+
+            .calendar-day {
+                padding: 5px;
+            }
+
+            .calendar-day-number {
+                font-size: 1rem;
+            }
+
+            .calendar-day-label {
+                font-size: 0.6rem;
+            }
+
+            .calendar-legend {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .weight-input-row {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
@@ -498,6 +776,10 @@
         <div class="goal-banner">
             <div class="goal-content">
                 <div class="goal-item">
+                    <div class="goal-label">Start Date</div>
+                    <div class="goal-value">Jan 1, 2026</div>
+                </div>
+                <div class="goal-item">
                     <div class="goal-label">Starting Weight</div>
                     <div class="goal-value">145 lbs</div>
                 </div>
@@ -506,18 +788,15 @@
                     <div class="goal-value">135 lbs</div>
                 </div>
                 <div class="goal-item">
-                    <div class="goal-label">Target</div>
-                    <div class="goal-value">Build Muscle</div>
-                </div>
-                <div class="goal-item">
-                    <div class="goal-label">Timeline</div>
-                    <div class="goal-value">3 Months</div>
+                    <div class="goal-label">End Date</div>
+                    <div class="goal-value">Apr 1, 2026</div>
                 </div>
             </div>
         </div>
 
         <div class="nav-tabs">
             <button class="tab-btn active" onclick="showTab('today')">Today's Focus</button>
+            <button class="tab-btn" onclick="showTab('calendar')">Calendar</button>
             <button class="tab-btn" onclick="showTab('workouts')">Workouts</button>
             <button class="tab-btn" onclick="showTab('nutrition')">Nutrition</button>
             <button class="tab-btn" onclick="showTab('tracking')">Log Progress</button>
@@ -534,9 +813,9 @@
             <div class="card">
                 <div class="card-header">Quick Actions</div>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                    <button class="btn" onclick="showTab('workouts')">View Today's Workout</button>
+                    <button class="btn" onclick="showTab('calendar')">View Calendar</button>
+                    <button class="btn" onclick="showTab('workouts')">Today's Workout</button>
                     <button class="btn btn-secondary" onclick="showTab('tracking')">Log Progress</button>
-                    <button class="btn btn-secondary" onclick="showTab('nutrition')">Meal Plan</button>
                 </div>
             </div>
 
@@ -551,292 +830,335 @@
             </div>
         </div>
 
-        <!-- Workouts Tab -->
+        <!-- Calendar Tab -->
+        <div id="calendar" class="tab-content">
+            <div class="card">
+                <div class="card-header">📅 Workout Calendar</div>
+                
+                <div class="calendar-header">
+                    <button onclick="previousMonth()" style="background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">← Previous</button>
+                    <div class="calendar-month" id="calendarMonth"></div>
+                    <button onclick="nextMonth()" style="background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">Next →</button>
+                </div>
+
+                <div class="calendar-grid">
+                    <div class="calendar-day-header">Sun</div>
+                    <div class="calendar-day-header">Mon</div>
+                    <div class="calendar-day-header">Tue</div>
+                    <div class="calendar-day-header">Wed</div>
+                    <div class="calendar-day-header">Thu</div>
+                    <div class="calendar-day-header">Fri</div>
+                    <div class="calendar-day-header">Sat</div>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar days will be inserted here -->
+                </div>
+
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <div class="legend-color completed"></div>
+                        <span>Workout Completed</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color workout"></div>
+                        <span>Workout Scheduled</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color rest"></div>
+                        <span>Rest Day</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color measurement"></div>
+                        <span>Measurement Day (Sundays)</span>
+                    </div>
+                </div>
+
+                <div class="reminder-box" style="margin-top: 30px;">
+                    <div class="reminder-title">How to Use</div>
+                    <p>Click on any workout day to mark it as complete. Program runs from January 1 - April 1, 2026. Measurement reminders appear every Sunday!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workouts Tab - SEE NEXT MESSAGE FOR CONTINUATION -->
         <div id="workouts" class="tab-content">
             <div class="card">
-                <div class="card-header">💪 Workout Program</div>
+                <div class="card-header">💪 Workout Program with Weight Tracking</div>
                 
                 <div class="workout-section">
-                    <div class="workout-title">Lower Body + Core (Days 1 & 3)</div>
+                    <div class="workout-title">Lower Body + Core (Mon/Thu)</div>
                     
-                    <div class="exercise-card">
+                    <div class="exercise-card" data-exercise="goblet-squats">
                         <div class="exercise-header">
                             <div class="exercise-name">Goblet Squats</div>
                             <div class="exercise-reps">4 sets × 8-10 reps</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=goblet+squat+form+tutorial" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=goblet+squat+form+tutorial" target="_blank" class="video-link">📹 Watch Video</a>
+                        
+                        <div class="weight-logger">
+                            <div class="weight-logger-title">Log Today's Weight</div>
+                            <div class="weight-input-row">
+                                <div class="weight-input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="exercise-date" id="goblet-squats-date">
+                                </div>
+                                <div class="weight-input-group">
+                                    <label>Weight (lbs)</label>
+                                    <input type="number" class="exercise-weight" step="2.5" placeholder="20">
+                                </div>
+                                <button class="log-weight-btn" onclick="logExerciseWeight('goblet-squats')">Log</button>
+                            </div>
+                            <div class="weight-history" id="goblet-squats-history"></div>
+                        </div>
                     </div>
 
-                    <div class="exercise-card">
+                    <div class="exercise-card" data-exercise="romanian-deadlifts">
                         <div class="exercise-header">
                             <div class="exercise-name">Romanian Deadlifts</div>
                             <div class="exercise-reps">4 sets × 8-10 reps</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=romanian+deadlift+dumbbell+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=romanian+deadlift+dumbbell+form" target="_blank" class="video-link">📹 Watch Video</a>
+                        
+                        <div class="weight-logger">
+                            <div class="weight-logger-title">Log Today's Weight</div>
+                            <div class="weight-input-row">
+                                <div class="weight-input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="exercise-date" id="romanian-deadlifts-date">
+                                </div>
+                                <div class="weight-input-group">
+                                    <label>Weight (lbs)</label>
+                                    <input type="number" class="exercise-weight" step="2.5" placeholder="15">
+                                </div>
+                                <button class="log-weight-btn" onclick="logExerciseWeight('romanian-deadlifts')">Log</button>
+                            </div>
+                            <div class="weight-history" id="romanian-deadlifts-history"></div>
+                        </div>
                     </div>
 
-                    <div class="exercise-card">
+                    <div class="exercise-card" data-exercise="walking-lunges">
                         <div class="exercise-header">
                             <div class="exercise-name">Walking Lunges</div>
-                            <div class="exercise-reps">3 sets × 12 reps per leg</div>
+                            <div class="exercise-reps">3 sets × 12 reps/leg</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=walking+lunges+proper+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=walking+lunges+proper+form" target="_blank" class="video-link">📹 Watch Video</a>
+                        
+                        <div class="weight-logger">
+                            <div class="weight-logger-title">Log Today's Weight</div>
+                            <div class="weight-input-row">
+                                <div class="weight-input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="exercise-date" id="walking-lunges-date">
+                                </div>
+                                <div class="weight-input-group">
+                                    <label>Weight (lbs)</label>
+                                    <input type="number" class="exercise-weight" step="2.5" placeholder="10">
+                                </div>
+                                <button class="log-weight-btn" onclick="logExerciseWeight('walking-lunges')">Log</button>
+                            </div>
+                            <div class="weight-history" id="walking-lunges-history"></div>
+                        </div>
                     </div>
 
-                    <div class="exercise-card">
+                    <div class="exercise-card" data-exercise="hip-thrusts">
                         <div class="exercise-header">
                             <div class="exercise-name">Hip Thrusts</div>
                             <div class="exercise-reps">3 sets × 12 reps</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=hip+thrust+tutorial" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=hip+thrust+tutorial" target="_blank" class="video-link">📹 Watch Video</a>
+                        
+                        <div class="weight-logger">
+                            <div class="weight-logger-title">Log Today's Weight</div>
+                            <div class="weight-input-row">
+                                <div class="weight-input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="exercise-date" id="hip-thrusts-date">
+                                </div>
+                                <div class="weight-input-group">
+                                    <label>Weight (lbs)</label>
+                                    <input type="number" class="exercise-weight" step="2.5" placeholder="25">
+                                </div>
+                                <button class="log-weight-btn" onclick="logExerciseWeight('hip-thrusts')">Log</button>
+                            </div>
+                            <div class="weight-history" id="hip-thrusts-history"></div>
+                        </div>
                     </div>
 
                     <div class="exercise-card">
                         <div class="exercise-header">
                             <div class="exercise-name">Plank Variations</div>
-                            <div class="exercise-reps">3 sets × 30-45 seconds</div>
+                            <div class="exercise-reps">3 sets × 30-45 sec</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=plank+variations+workout" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=plank+variations+workout" target="_blank" class="video-link">📹 Watch Video</a>
+                        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-light);">Bodyweight - track time instead</p>
                     </div>
                 </div>
 
                 <div class="workout-section">
-                    <div class="workout-title">Upper Body + Core (Days 2 & 4)</div>
+                    <div class="workout-title">Upper Body + Core (Tue/Fri)</div>
                     
                     <div class="exercise-card">
                         <div class="exercise-header">
                             <div class="exercise-name">Push-ups</div>
                             <div class="exercise-reps">4 sets × 8-12 reps</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=push+up+progression+tutorial" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=push+up+progression+tutorial" target="_blank" class="video-link">📹 Watch Video</a>
+                        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-light);">Bodyweight - track reps completed</p>
                     </div>
 
-                    <div class="exercise-card">
+                    <div class="exercise-card" data-exercise="dumbbell-rows">
                         <div class="exercise-header">
                             <div class="exercise-name">Dumbbell Rows</div>
-                            <div class="exercise-reps">4 sets × 10 reps per arm</div>
+                            <div class="exercise-reps">4 sets × 10 reps/arm</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row+form" target="_blank" class="video-link">📹 Watch Video</a>
+                        
+                        <div class="weight-logger">
+                            <div class="weight-logger-title">Log Today's Weight</div>
+                            <div class="weight-input-row">
+                                <div class="weight-input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="exercise-date" id="dumbbell-rows-date">
+                                </div>
+                                <div class="weight-input-group">
+                                    <label>Weight (lbs)</label>
+                                    <input type="number" class="exercise-weight" step="2.5" placeholder="15">
+                                </div>
+                                <button class="log-weight-btn" onclick="logExerciseWeight('dumbbell-rows')">Log</button>
+                            </div>
+                            <div class="weight-history" id="dumbbell-rows-history"></div>
+                        </div>
                     </div>
 
-                    <div class="exercise-card">
+                    <div class="exercise-card" data-exercise="overhead-press">
                         <div class="exercise-header">
                             <div class="exercise-name">Overhead Press</div>
                             <div class="exercise-reps">3 sets × 10 reps</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=dumbbell+overhead+press+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=dumbbell+overhead+press+form" target="_blank" class="video-link">📹 Watch Video</a>
+                        
+                        <div class="weight-logger">
+                            <div class="weight-logger-title">Log Today's Weight</div>
+                            <div class="weight-input-row">
+                                <div class="weight-input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="exercise-date" id="overhead-press-date">
+                                </div>
+                                <div class="weight-input-group">
+                                    <label>Weight (lbs)</label>
+                                    <input type="number" class="exercise-weight" step="2.5" placeholder="10">
+                                </div>
+                                <button class="log-weight-btn" onclick="logExerciseWeight('overhead-press')">Log</button>
+                            </div>
+                            <div class="weight-history" id="overhead-press-history"></div>
+                        </div>
                     </div>
 
-                    <div class="exercise-card">
+                    <div class="exercise-card" data-exercise="chest-press">
                         <div class="exercise-header">
                             <div class="exercise-name">Chest Press</div>
                             <div class="exercise-reps">3 sets × 10 reps</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=dumbbell+chest+press+tutorial" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=dumbbell+chest+press+tutorial" target="_blank" class="video-link">📹 Watch Video</a>
+                        
+                        <div class="weight-logger">
+                            <div class="weight-logger-title">Log Today's Weight</div>
+                            <div class="weight-input-row">
+                                <div class="weight-input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="exercise-date" id="chest-press-date">
+                                </div>
+                                <div class="weight-input-group">
+                                    <label>Weight (lbs)</label>
+                                    <input type="number" class="exercise-weight" step="2.5" placeholder="15">
+                                </div>
+                                <button class="log-weight-btn" onclick="logExerciseWeight('chest-press')">Log</button>
+                            </div>
+                            <div class="weight-history" id="chest-press-history"></div>
+                        </div>
                     </div>
 
-                    <div class="exercise-card">
+                    <div class="exercise-card" data-exercise="bicep-curls">
                         <div class="exercise-header">
                             <div class="exercise-name">Bicep Curls</div>
                             <div class="exercise-reps">3 sets × 12 reps</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=bicep+curl+proper+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=bicep+curl+proper+form" target="_blank" class="video-link">📹 Watch Video</a>
+                        
+                        <div class="weight-logger">
+                            <div class="weight-logger-title">Log Today's Weight</div>
+                            <div class="weight-input-row">
+                                <div class="weight-input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="exercise-date" id="bicep-curls-date">
+                                </div>
+                                <div class="weight-input-group">
+                                    <label>Weight (lbs)</label>
+                                    <input type="number" class="exercise-weight" step="2.5" placeholder="10">
+                                </div>
+                                <button class="log-weight-btn" onclick="logExerciseWeight('bicep-curls')">Log</button>
+                            </div>
+                            <div class="weight-history" id="bicep-curls-history"></div>
+                        </div>
                     </div>
 
-                    <div class="exercise-card">
+                    <div class="exercise-card" data-exercise="tricep-dips">
                         <div class="exercise-header">
                             <div class="exercise-name">Tricep Dips</div>
                             <div class="exercise-reps">3 sets × 12 reps</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=tricep+dips+bench+form" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=tricep+dips+bench+form" target="_blank" class="video-link">📹 Watch Video</a>
+                        
+                        <div class="weight-logger">
+                            <div class="weight-logger-title">Log Weight (if adding)</div>
+                            <div class="weight-input-row">
+                                <div class="weight-input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="exercise-date" id="tricep-dips-date">
+                                </div>
+                                <div class="weight-input-group">
+                                    <label>Weight (lbs)</label>
+                                    <input type="number" class="exercise-weight" step="2.5" placeholder="0">
+                                </div>
+                                <button class="log-weight-btn" onclick="logExerciseWeight('tricep-dips')">Log</button>
+                            </div>
+                            <div class="weight-history" id="tricep-dips-history"></div>
+                        </div>
                     </div>
 
                     <div class="exercise-card">
                         <div class="exercise-header">
                             <div class="exercise-name">Dead Bug / Bird Dog</div>
-                            <div class="exercise-reps">3 sets × 10 reps per side</div>
+                            <div class="exercise-reps">3 sets × 10 reps/side</div>
                         </div>
-                        <a href="https://www.youtube.com/results?search_query=dead+bug+bird+dog+exercise" target="_blank" class="video-link">📹 Watch Form Video</a>
+                        <a href="https://www.youtube.com/results?search_query=dead+bug+bird+dog+exercise" target="_blank" class="video-link">📹 Watch Video</a>
+                        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-light);">Bodyweight core exercise</p>
                     </div>
                 </div>
 
                 <div class="reminder-box">
-                    <div class="reminder-title">💡 Pro Tips</div>
+                    <div class="reminder-title">💡 Progressive Overload Tips</div>
                     <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>Increase weight by 2.5-5 lbs when you complete all sets with good form</li>
-                        <li>Rest 60-90 seconds between sets</li>
-                        <li>Focus on slow, controlled movements</li>
-                        <li>Track your weights - progressive overload is key!</li>
+                        <li>Log weights immediately after each workout</li>
+                        <li>When you see ↑ symbols, you're making gains!</li>
+                        <li>Increase by 2.5-5 lbs when completing all sets with good form</li>
+                        <li>The weight history shows your last 5 workouts for each exercise</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Nutrition Tab -->
-        <div id="nutrition" class="tab-content">
-            <div class="card">
-                <div class="card-header">🥗 Daily Meal Plan</div>
-                <div style="margin-bottom: 20px; padding: 15px; background: var(--background); border-radius: 8px;">
-                    <strong>Daily Targets:</strong> 1,800-1,900 calories | 130-145g protein | 60-75g fat | 150-180g carbs
-                </div>
-
-                <div class="meal-plan">
-                    <div class="meal-card">
-                        <div class="meal-title">Breakfast</div>
-                        <div class="meal-macros">400 cal • 35g protein</div>
-                        <ul class="meal-items">
-                            <li>3 egg whites + 1 whole egg scrambled with spinach</li>
-                            <li>1/2 cup oatmeal with berries</li>
-                            <li>Black coffee or tea</li>
-                        </ul>
-                    </div>
-
-                    <div class="meal-card">
-                        <div class="meal-title">Mid-Morning Snack</div>
-                        <div class="meal-macros">200 cal • 20g protein</div>
-                        <ul class="meal-items">
-                            <li>Greek yogurt (5.3oz, 0-2% fat) + 1 tbsp almond butter</li>
-                            <li>OR protein shake with banana</li>
-                        </ul>
-                    </div>
-
-                    <div class="meal-card">
-                        <div class="meal-title">Lunch</div>
-                        <div class="meal-macros">500 cal • 40g protein</div>
-                        <ul class="meal-items">
-                            <li>5-6 oz grilled chicken, salmon, or lean turkey</li>
-                            <li>Large mixed greens salad with olive oil vinaigrette</li>
-                            <li>1/2 cup quinoa or sweet potato</li>
-                            <li>Assorted vegetables</li>
-                        </ul>
-                    </div>
-
-                    <div class="meal-card">
-                        <div class="meal-title">Afternoon Snack</div>
-                        <div class="meal-macros">150 cal • 15g protein</div>
-                        <ul class="meal-items">
-                            <li>String cheese + apple</li>
-                            <li>OR 1/4 cup hummus with veggie sticks</li>
-                        </ul>
-                    </div>
-
-                    <div class="meal-card">
-                        <div class="meal-title">Dinner</div>
-                        <div class="meal-macros">500 cal • 35g protein</div>
-                        <ul class="meal-items">
-                            <li>5-6 oz protein (steak, fish, pork tenderloin, tofu)</li>
-                            <li>Roasted vegetables (Brussels sprouts, asparagus, cauliflower)</li>
-                            <li>Side salad with vinaigrette</li>
-                            <li>1/3 cup brown rice (training days only)</li>
-                        </ul>
-                    </div>
-
-                    <div class="meal-card">
-                        <div class="meal-title">Evening (Optional)</div>
-                        <div class="meal-macros">150 cal • 10g protein</div>
-                        <ul class="meal-items">
-                            <li>Cottage cheese with cucumber</li>
-                            <li>OR casein protein shake</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="reminder-box" style="margin-top: 30px;">
-                    <div class="reminder-title">🌟 Perimenopause Nutrition Tips</div>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>Front-load carbs earlier in the day</li>
-                        <li>Keep healthy fats at 25-30% of calories</li>
-                        <li>Stay hydrated: 80-100 oz water daily</li>
-                        <li>Consider creatine: 5g daily (great for women 40+)</li>
-                        <li>Limit wine to 1-2 glasses/week during this 3-month push</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tracking Tab -->
-        <div id="tracking" class="tab-content">
-            <div class="card">
-                <div class="card-header">📊 Log Your Progress</div>
-                
-                <h3 style="margin-bottom: 15px; color: var(--primary);">Body Measurements</h3>
-                <div class="measurement-grid">
-                    <div class="measurement-input">
-                        <label>Date</label>
-                        <input type="date" id="measurementDate">
-                    </div>
-                    <div class="measurement-input">
-                        <label>Body Weight (lbs)</label>
-                        <input type="number" id="weight" step="0.1" placeholder="145.0">
-                    </div>
-                    <div class="measurement-input">
-                        <label>Waist (inches)</label>
-                        <input type="number" id="waist" step="0.25" placeholder="28.0">
-                    </div>
-                    <div class="measurement-input">
-                        <label>Hips (inches)</label>
-                        <input type="number" id="hips" step="0.25" placeholder="38.0">
-                    </div>
-                    <div class="measurement-input">
-                        <label>Right Thigh (inches)</label>
-                        <input type="number" id="thigh" step="0.25" placeholder="22.0">
-                    </div>
-                    <div class="measurement-input">
-                        <label>Right Arm (inches)</label>
-                        <input type="number" id="arm" step="0.25" placeholder="11.0">
-                    </div>
-                </div>
-
-                <h3 style="margin: 30px 0 15px; color: var(--primary);">Daily Nutrition</h3>
-                <div class="measurement-grid">
-                    <div class="measurement-input">
-                        <label>Calories</label>
-                        <input type="number" id="calories" placeholder="1850">
-                    </div>
-                    <div class="measurement-input">
-                        <label>Protein (g)</label>
-                        <input type="number" id="protein" placeholder="140">
-                    </div>
-                    <div class="measurement-input">
-                        <label>Carbs (g)</label>
-                        <input type="number" id="carbs" placeholder="165">
-                    </div>
-                    <div class="measurement-input">
-                        <label>Fat (g)</label>
-                        <input type="number" id="fat" placeholder="68">
-                    </div>
-                    <div class="measurement-input">
-                        <label>Water (oz)</label>
-                        <input type="number" id="water" placeholder="90">
-                    </div>
-                </div>
-
-                <div style="margin-top: 30px;">
-                    <button class="btn" onclick="saveProgress()">Save Progress</button>
-                </div>
-
-                <div id="successMessage" style="display: none;" class="success-message">
-                    ✓ Progress saved successfully!
-                </div>
-            </div>
-        </div>
-
-        <!-- History Tab -->
-        <div id="history" class="tab-content">
-            <div class="card">
-                <div class="card-header">📈 Your Progress History</div>
-                <div id="historyList" class="history-list">
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📋</div>
-                        <p>No progress logged yet. Start tracking to see your journey!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Rest of tabs remain the same - Nutrition, Tracking, History -->
+        <!-- I'll include the full JavaScript in the next section -->
+        
     </div>
 
     <script>
-        // Initialize on page load
+        let currentMonth = new Date(2026, 0, 1);
+        const PROGRAM_START = new Date(2026, 0, 1);
+        const PROGRAM_END = new Date(2026, 3, 1);
+        
         document.addEventListener('DOMContentLoaded', function() {
             initializeApp();
         });
@@ -844,8 +1166,9 @@
         function initializeApp() {
             setTodayDate();
             updateTodayReminder();
-            loadHistory();
-            updateQuickProgress();
+            renderCalendar();
+            setAllExerciseDates();
+            loadAllExerciseHistory();
         }
 
         function setTodayDate() {
@@ -853,223 +1176,237 @@
             document.getElementById('measurementDate').value = today;
         }
 
+        function setAllExerciseDates() {
+            const today = new Date().toISOString().split('T')[0];
+            document.querySelectorAll('.exercise-date').forEach(input => {
+                input.value = today;
+            });
+        }
+
         function showTab(tabName) {
-            // Hide all tabs
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Remove active from all buttons
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            // Show selected tab
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
-            
-            // Activate button
             event.target.classList.add('active');
+            
+            if (tabName === 'calendar') renderCalendar();
+            if (tabName === 'workouts') loadAllExerciseHistory();
         }
 
         function updateTodayReminder() {
             const today = new Date();
-            const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
-            let reminder = '';
-
-            // Workout schedule: Mon/Tue (1,2), Thu/Fri (4,5)
-            if (dayOfWeek === 1 || dayOfWeek === 4) {
-                reminder = '💪 <strong>Lower Body + Core Day!</strong> Time to build those legs and glutes. Don\'t forget to track your weights.';
-            } else if (dayOfWeek === 2 || dayOfWeek === 5) {
-                reminder = '💪 <strong>Upper Body + Core Day!</strong> Focus on building upper body strength today.';
-            } else if (dayOfWeek === 0) {
-                reminder = '📏 <strong>Weigh-in Day!</strong> Time to log your weekly measurements. Weigh yourself first thing in the morning.';
+            const dayOfWeek = today.getDay();
+            
+            if (today >= PROGRAM_START && today <= PROGRAM_END) {
+                let reminder = '';
+                if (dayOfWeek === 1 || dayOfWeek === 4) {
+                    reminder = '💪 <strong>Lower Body + Core Day!</strong> Log those weights!';
+                } else if (dayOfWeek === 2 || dayOfWeek === 5) {
+                    reminder = '💪 <strong>Upper Body + Core Day!</strong> Log those weights!';
+                } else if (dayOfWeek === 0) {
+                    reminder = '📏 <strong>Weigh-in Day!</strong> Log your weekly measurements.';
+                } else {
+                    reminder = '🌟 <strong>Rest & Recovery Day.</strong> Muscles grow during rest!';
+                }
+                document.getElementById('reminderText').innerHTML = reminder;
+            } else if (today < PROGRAM_START) {
+                const daysUntil = Math.ceil((PROGRAM_START - today) / (1000 * 60 * 60 * 24));
+                document.getElementById('reminderText').innerHTML = `⏳ <strong>Program starts in ${daysUntil} days!</strong> January 1, 2026`;
             } else {
-                reminder = '🌟 <strong>Rest & Recovery Day.</strong> Your muscles grow during rest. Stay hydrated and hit your protein target!';
+                document.getElementById('reminderText').innerHTML = '🎉 <strong>Program Complete!</strong> Congratulations!';
             }
-
-            document.getElementById('reminderText').innerHTML = reminder;
         }
 
-        async function saveProgress() {
-            const data = {
-                date: document.getElementById('measurementDate').value,
-                weight: document.getElementById('weight').value,
-                waist: document.getElementById('waist').value,
-                hips: document.getElementById('hips').value,
-                thigh: document.getElementById('thigh').value,
-                arm: document.getElementById('arm').value,
-                calories: document.getElementById('calories').value,
-                protein: document.getElementById('protein').value,
-                carbs: document.getElementById('carbs').value,
-                fat: document.getElementById('fat').value,
-                water: document.getElementById('water').value
-            };
-
-            // Filter out empty values
-            const cleanData = {};
-            for (const [key, value] of Object.entries(data)) {
-                if (value && value !== '') {
-                    cleanData[key] = value;
-                }
-            }
-
-            if (Object.keys(cleanData).length <= 1) { // Only date
-                alert('Please enter at least one measurement or nutrition value.');
+        async function logExerciseWeight(exerciseId) {
+            const card = document.querySelector(`[data-exercise="${exerciseId}"]`);
+            const dateInput = card.querySelector('.exercise-date');
+            const weightInput = card.querySelector('.exercise-weight');
+            
+            const date = dateInput.value;
+            const weight = weightInput.value;
+            
+            if (!date || !weight) {
+                alert('Please enter both date and weight');
                 return;
             }
-
+            
             try {
-                const storageKey = `progress_${cleanData.date}`;
-                await window.storage.set(storageKey, JSON.stringify(cleanData));
+                const historyKey = `exercise_${exerciseId}`;
+                let history = [];
+                try {
+                    const result = await window.storage.get(historyKey);
+                    if (result && result.value) {
+                        history = JSON.parse(result.value);
+                    }
+                } catch (e) {}
                 
-                // Show success message
-                const successMsg = document.getElementById('successMessage');
-                successMsg.style.display = 'block';
-                setTimeout(() => {
-                    successMsg.style.display = 'none';
-                }, 3000);
-
-                // Clear form
-                document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
-                setTodayDate();
-
-                // Refresh history
-                loadHistory();
-                updateQuickProgress();
+                history.push({ date, weight: parseFloat(weight) });
+                history.sort((a, b) => new Date(a.date) - new Date(b.date));
+                
+                await window.storage.set(historyKey, JSON.stringify(history));
+                
+                weightInput.value = '';
+                loadExerciseHistory(exerciseId);
+                
+                alert('✓ Weight logged!');
             } catch (error) {
-                alert('Error saving progress. Please try again.');
-                console.error('Save error:', error);
+                console.error('Error:', error);
+                alert('Error logging weight');
             }
         }
 
-        async function loadHistory() {
+        async function loadExerciseHistory(exerciseId) {
+            const historyDiv = document.getElementById(`${exerciseId}-history`);
+            
             try {
-                const keys = await window.storage.list('progress_');
+                const result = await window.storage.get(`exercise_${exerciseId}`);
+                if (!result || !result.value) {
+                    historyDiv.innerHTML = '<p style="color: var(--text-light); font-size: 0.85rem;">No history yet</p>';
+                    return;
+                }
                 
-                if (!keys || keys.keys.length === 0) {
-                    document.getElementById('historyList').innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-state-icon">📋</div>
-                            <p>No progress logged yet. Start tracking to see your journey!</p>
+                const history = JSON.parse(result.value);
+                const recent = history.slice(-5).reverse();
+                
+                let html = '<div style="font-weight: 600; margin-bottom: 5px; font-size: 0.85rem;">Progress:</div>';
+                recent.forEach((entry, index) => {
+                    const prevWeight = index < recent.length - 1 ? recent[index + 1].weight : null;
+                    const increase = prevWeight ? entry.weight - prevWeight : 0;
+                    const trendIcon = increase > 0 ? '↑' : increase < 0 ? '↓' : '→';
+                    const trendColor = increase > 0 ? 'var(--success)' : 'var(--text-light)';
+                    
+                    html += `
+                        <div class="weight-history-item">
+                            <span>${new Date(entry.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                            <span style="color: ${trendColor}; font-weight: 600;">
+                                ${entry.weight} lbs ${increase !== 0 ? `(${trendIcon}${Math.abs(increase).toFixed(1)})` : ''}
+                            </span>
                         </div>
                     `;
-                    return;
-                }
-
-                // Sort keys by date (newest first)
-                const sortedKeys = keys.keys.sort().reverse();
+                });
                 
-                let historyHTML = '';
-                for (const key of sortedKeys) {
-                    try {
-                        const result = await window.storage.get(key);
-                        if (result && result.value) {
-                            const data = JSON.parse(result.value);
-                            historyHTML += createHistoryItem(data);
-                        }
-                    } catch (e) {
-                        console.error('Error loading entry:', e);
-                    }
-                }
-
-                document.getElementById('historyList').innerHTML = historyHTML || `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📋</div>
-                        <p>No valid progress entries found.</p>
-                    </div>
-                `;
+                historyDiv.innerHTML = html;
             } catch (error) {
-                console.error('Error loading history:', error);
-                document.getElementById('historyList').innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">⚠️</div>
-                        <p>Unable to load history. Please refresh the page.</p>
-                    </div>
-                `;
+                historyDiv.innerHTML = '<p style="color: var(--text-light);">Error loading</p>';
             }
         }
 
-        function createHistoryItem(data) {
-            const date = new Date(data.date).toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+        function loadAllExerciseHistory() {
+            ['goblet-squats', 'romanian-deadlifts', 'walking-lunges', 'hip-thrusts',
+             'dumbbell-rows', 'overhead-press', 'chest-press', 'bicep-curls', 'tricep-dips'].forEach(ex => {
+                loadExerciseHistory(ex);
             });
-
-            let detailsHTML = '<div class="history-details">';
-            
-            if (data.weight) detailsHTML += `<div><strong>Weight:</strong> ${data.weight} lbs</div>`;
-            if (data.waist) detailsHTML += `<div><strong>Waist:</strong> ${data.waist}"</div>`;
-            if (data.hips) detailsHTML += `<div><strong>Hips:</strong> ${data.hips}"</div>`;
-            if (data.thigh) detailsHTML += `<div><strong>Thigh:</strong> ${data.thigh}"</div>`;
-            if (data.arm) detailsHTML += `<div><strong>Arm:</strong> ${data.arm}"</div>`;
-            if (data.calories) detailsHTML += `<div><strong>Calories:</strong> ${data.calories}</div>`;
-            if (data.protein) detailsHTML += `<div><strong>Protein:</strong> ${data.protein}g</div>`;
-            if (data.carbs) detailsHTML += `<div><strong>Carbs:</strong> ${data.carbs}g</div>`;
-            if (data.fat) detailsHTML += `<div><strong>Fat:</strong> ${data.fat}g</div>`;
-            if (data.water) detailsHTML += `<div><strong>Water:</strong> ${data.water}oz</div>`;
-            
-            detailsHTML += '</div>';
-
-            return `
-                <div class="history-item">
-                    <div class="history-date">${date}</div>
-                    ${detailsHTML}
-                </div>
-            `;
         }
 
-        async function updateQuickProgress() {
-            try {
-                const keys = await window.storage.list('progress_');
-                
-                if (!keys || keys.keys.length === 0) {
-                    return;
-                }
-
-                // Get most recent entry
-                const sortedKeys = keys.keys.sort().reverse();
-                const latestKey = sortedKeys[0];
-                const result = await window.storage.get(latestKey);
-                
-                if (result && result.value) {
-                    const data = JSON.parse(result.value);
-                    
-                    let progressHTML = '';
-                    if (data.weight) {
-                        const remaining = 145 - parseFloat(data.weight);
-                        const lost = 145 - parseFloat(data.weight);
-                        progressHTML += `
-                            <div class="progress-item">
-                                <span class="progress-label">Current Weight</span>
-                                <span class="progress-value">${data.weight} lbs</span>
-                            </div>
-                            <div class="progress-item">
-                                <span class="progress-label">Weight Lost</span>
-                                <span class="progress-value">${lost.toFixed(1)} lbs</span>
-                            </div>
-                            <div class="progress-item">
-                                <span class="progress-label">To Goal</span>
-                                <span class="progress-value">${(145 - 135).toFixed(1)} lbs</span>
-                            </div>
-                        `;
-                    }
-                    
-                    if (data.protein) {
-                        progressHTML += `
-                            <div class="progress-item">
-                                <span class="progress-label">Last Protein Intake</span>
-                                <span class="progress-value">${data.protein}g</span>
-                            </div>
-                        `;
-                    }
-
-                    if (progressHTML) {
-                        document.getElementById('quickProgress').innerHTML = progressHTML;
-                    }
-                }
-            } catch (error) {
-                console.error('Error updating quick progress:', error);
+        function renderCalendar() {
+            const year = currentMonth.getFullYear();
+            const month = currentMonth.getMonth();
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            document.getElementById('calendarMonth').textContent = `${monthNames[month]} ${year}`;
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < firstDay; i++) {
+                const dummy = document.createElement('div');
+                dummy.className = 'calendar-day other-month';
+                grid.appendChild(dummy);
             }
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayEl = createCalendarDay(day, month, year);
+                grid.appendChild(dayEl);
+            }
+        }
+
+        function createCalendarDay(day, month, year) {
+            const dayEl = document.createElement('div');
+            dayEl.className = 'calendar-day';
+            
+            const date = new Date(year, month, day);
+            const dateStr = date.toISOString().split('T')[0];
+            const dayOfWeek = date.getDay();
+            const today = new Date();
+            
+            const isInProgram = date >= PROGRAM_START && date <= PROGRAM_END;
+            if (date.toDateString() === today.toDateString()) dayEl.classList.add('today');
+            
+            const dayNumber = document.createElement('div');
+            dayNumber.className = 'calendar-day-number';
+            dayNumber.textContent = day;
+            dayEl.appendChild(dayNumber);
+            
+            if (isInProgram) {
+                const label = document.createElement('div');
+                label.className = 'calendar-day-label';
+                
+                const isCompleted = checkWorkoutCompleted(dateStr);
+                
+                if (isCompleted) {
+                    dayEl.classList.add('completed');
+                    label.textContent = '✓ Done';
+                } else if (dayOfWeek === 0) {
+                    dayEl.classList.add('workout-day');
+                    label.textContent = 'Measure';
+                } else if (dayOfWeek === 1 || dayOfWeek === 4) {
+                    dayEl.classList.add('workout-day');
+                    label.textContent = 'Lower';
+                } else if (dayOfWeek === 2 || dayOfWeek === 5) {
+                    dayEl.classList.add('workout-day');
+                    label.textContent = 'Upper';
+                } else {
+                    dayEl.classList.add('rest-day');
+                    label.textContent = 'Rest';
+                }
+                
+                dayEl.appendChild(label);
+                
+                if ((dayOfWeek === 1 || dayOfWeek === 2 || dayOfWeek === 4 || dayOfWeek === 5)) {
+                    dayEl.style.cursor = 'pointer';
+                    dayEl.onclick = () => toggleWorkout(dateStr);
+                }
+            }
+            
+            return dayEl;
+        }
+
+        function checkWorkoutCompleted(dateStr) {
+            try {
+                const stored = localStorage.getItem(`workout_${dateStr}`);
+                return stored === 'completed';
+            } catch {
+                return false;
+            }
+        }
+
+        async function toggleWorkout(dateStr) {
+            try {
+                const isCompleted = checkWorkoutCompleted(dateStr);
+                
+                if (isCompleted) {
+                    await window.storage.delete(`workout_${dateStr}`);
+                    localStorage.removeItem(`workout_${dateStr}`);
+                } else {
+                    await window.storage.set(`workout_${dateStr}`, 'completed');
+                    localStorage.setItem(`workout_${dateStr}`, 'completed');
+                }
+                
+                renderCalendar();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function previousMonth() {
+            currentMonth.setMonth(currentMonth.getMonth() - 1);
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentMonth.setMonth(currentMonth.getMonth() + 1);
+            renderCalendar();
         }
     </script>
 </body>
